@@ -13,7 +13,7 @@ interface WordsProps {
 }
 
 export default function Study (props : any) {
-  
+  const sortko : string = props.route.params.sortko ?? '';
   const wordsList: WordsProps[] = props.route.params.data;
   const wordsLength = wordsList.length;
   const [isViewMeaning, setIsViewMeaning] = useState(Array(wordsList.length).fill(false));
@@ -40,9 +40,11 @@ export default function Study (props : any) {
       <Divider />
       
       <ScrollView style={styles.section}>
-        <View style={{width:'100%', alignItems:'flex-end', marginBottom:5, paddingRight:5}}>
+        <View style={{width:'100%', flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginBottom:5, paddingHorizontal:7}}>
+            <Typography fontSize={14} color='#8C8C8C'>{sortko}</Typography>
           <Typography fontSize={14} color='#8C8C8C'>{wordsLength}개 단어</Typography>
         </View>
+
       {
         wordsList.map((item:any, index:any)=>{
 
@@ -70,7 +72,7 @@ export default function Study (props : any) {
                     </>
                     :
                     <TouchableOpacity 
-                      style={{paddingVertical:10, paddingHorizontal:30, borderWidth:1, borderColor:'#EAEAEA', borderRadius:5}}
+                      style={{height:40, justifyContent:'center', paddingHorizontal:30, borderWidth:1, borderColor:'#EAEAEA', borderRadius:5}}
                       onPress={()=>{handleIsViewMeaning(index, !isViewMeaning[index])}}
                     >
                       <Typography color='#8C8C8C'>의미보기</Typography>

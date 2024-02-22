@@ -13,7 +13,7 @@ interface WordsProps {
 }
 
 export default function Quiz (props : any) {
-  
+  const sortko : string = props.route.params.sortko ?? '';
   const propsData: WordsProps[] = props.route.params.data;
   const [shuffledQuizs, setShuffledQuizs] = useState<WordsProps[]>([])
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
@@ -60,11 +60,11 @@ export default function Quiz (props : any) {
       setTimeout(() => {
         setIsAnswer(null)
         setCurrentQuizIndex(nextQuizIndex);
-      }, 500); 
+      }, 1000); 
       setTimeout(() => {
         const shuffledQuizs = generateQuiz(propsData[nextQuizIndex], propsData);
         setShuffledQuizs(shuffledQuizs);
-      }, 500);
+      }, 1000);
     } else {
       setIsResult(true);
     }
@@ -91,13 +91,16 @@ export default function Quiz (props : any) {
         ?
         <>
         <View style={styles.section}>
-          <View style={{width:'100%', alignItems:'flex-end', marginBottom:5, paddingRight:5}}>
-            <Typography fontSize={14} color='#8C8C8C'>{currentQuizIndex}/{propsData.length}문제</Typography>
+          <View style={{width:'100%', flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginBottom:10, paddingHorizontal:7}}>
+            <Typography fontSize={14} color='#8C8C8C'>{sortko}</Typography>
+            <Typography fontSize={14} color='#8C8C8C'>{currentQuizIndex+1}/{propsData.length}문제</Typography>
           </View>
 
-          <View style={{height:150, borderWidth:2, borderColor:'#BDBDBD', borderRadius:10, alignItems:'center', justifyContent:'center'}}>
-            <Typography fontSize={18} fontWeightIdx={1} marginBottom={5}>{propsData[currentQuizIndex].name_en}</Typography>
-            <Typography fontSize={18} fontWeightIdx={1}>{propsData[currentQuizIndex].name_ko}</Typography>
+          <View style={{height:150, borderWidth:2, borderColor:'#BDBDBD', borderRadius:10, alignItems:'center', justifyContent:'center', padding:15}}>
+            { isAnswer !== null 
+            ? <Typography fontSize={18} fontWeightIdx={1}>{propsData[currentQuizIndex].name_en}</Typography>
+            : <Typography fontSize={18} fontWeightIdx={1}  marginBottom={5}>{propsData[currentQuizIndex].name_ko}</Typography>
+            }
             <View style={{position:'absolute', top:5, left:5}}>
               <Typography>QUIZ</Typography>
             </View>
@@ -129,9 +132,11 @@ export default function Quiz (props : any) {
         </>
         :
         <View style={styles.section}>
-          <View style={{width:'100%', alignItems:'flex-end', marginBottom:5, paddingRight:5}}>
-            <Typography>{currentQuizIndex}/{propsData.length}문제</Typography>
+          <View style={{width:'100%', flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginBottom:10, paddingHorizontal:7}}>
+            <Typography fontSize={14} color='#8C8C8C'>{sortko}</Typography>
+            <Typography fontSize={14} color='#8C8C8C'>{currentQuizIndex+1}/{propsData.length}문제</Typography>
           </View>
+
           <View style={{height:150, borderWidth:2, borderColor:'#BDBDBD', borderRadius:10, alignItems:'center', justifyContent:'center'}}>
             <Typography fontWeightIdx={1} fontSize={18}>문제를 모두 풀었습니다.</Typography>
           </View>

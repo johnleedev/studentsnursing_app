@@ -229,7 +229,7 @@ export default function WordShortListHard (props : any) {
 
       <TouchableOpacity
         activeOpacity={0.9}
-        style={[styles.studyButton, { bottom: 70}]} 
+        style={[styles.studyButton, { bottom: 80}]} 
         onPress={()=>{
           props.navigation.navigate('SelectBox', { data: words, sort: 'Study' })
         }}
@@ -325,8 +325,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   studyButton: {
-    width:100,
-    height:50,
+    width:110,
+    height:60,
     borderWidth:1,
     borderColor:"#BDBDBD",
     borderRadius: 25,

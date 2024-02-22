@@ -24,6 +24,7 @@ export default function WordShortListEasy (props : any) {
   const [words, setWords] = useState<WordsProps[]>([]);
   const [isResdataFalse, setIsResdataFalse] = useState<boolean>(false);
   const [sort, setSort] = useState('SORT');
+  const [sortko, setSortko] = useState('진료과');
   const [wordsLength, setWordsLength] = useState(0);
   
   const fetchPosts = () => {
@@ -52,6 +53,7 @@ export default function WordShortListEasy (props : any) {
   const handleSortChange = (selected : any) => {
     setWordsViewList([]);
     setWordsLength(0);
+    setSortko(selected);
     if (selected === "공통") {setSort('COMMON');}
     else if (selected === "진료과") {setSort('SORT');}
     else if (selected === "응급실") {setSort('ER');}
@@ -222,11 +224,11 @@ export default function WordShortListEasy (props : any) {
     
       <TouchableOpacity
         activeOpacity={0.9}
-        style={[styles.studyButton, { bottom: 70}]} 
+        style={[styles.studyButton, { bottom: 80}]} 
         onPress={()=>{
           sort === 'COMMON' 
           ? props.navigation.navigate('SelectBoxShort', { data: words, sort: 'Study' })
-          : props.navigation.navigate('Study', { data: words });
+          : props.navigation.navigate('Study', { data: words, sortko: `${sortko}` });
         }}
       >
         <Image
@@ -243,7 +245,7 @@ export default function WordShortListEasy (props : any) {
         onPress={()=>{
           sort === 'COMMON' 
           ? props.navigation.navigate('SelectBoxShort', { data: words, sort: 'Quiz' })
-          : props.navigation.navigate('Quiz', { data: words });
+          : props.navigation.navigate('Quiz', { data: words, sortko: `${sortko}` });
         }}
       >
         <Image
@@ -300,8 +302,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   studyButton: {
-    width:100,
-    height:50,
+    width:110,
+    height:60,
     borderWidth:1,
     borderColor:"#BDBDBD",
     borderRadius: 25,

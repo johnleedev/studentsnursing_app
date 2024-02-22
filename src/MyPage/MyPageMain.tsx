@@ -33,12 +33,14 @@ function MyPageMain (props: any) {
   const asyncFetchData = async () => {
     try {
       const data = await AsyncGetItem();
-      axios.get(`${MainURL}/mypage/getprofile/${data?.userAccount}`).then((res) => {
-       setUserName(res.data[0].userName);
-       setUserSchool(res.data[0].userSchool);
-       setUserSchNum(res.data[0].userSchNum);
-      });
-      setAsyncGetData(data);
+      if (data) {
+        axios.get(`${MainURL}/mypage/getprofile/${data.userAccount}`).then((res) => {
+          setUserName(res.data[0].userName);
+          setUserSchool(res.data[0].userSchool);
+          setUserSchNum(res.data[0].userSchNum);
+        });
+        setAsyncGetData(data);
+      }
     } catch (error) {
       console.error(error);
     }

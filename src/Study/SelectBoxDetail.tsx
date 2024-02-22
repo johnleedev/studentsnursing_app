@@ -31,7 +31,7 @@ export default function SelectBoxDetail (props : any) {
       key={letter} // 고유한 키 할당
       style={styles.select}
       onPress={() => {
-          navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data })
+          navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data, sortko: `${letter}${index+1}` })
       }}
     >
       <View style={{ width: '80%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>

@@ -47,7 +47,7 @@ export default function SelectBox (props : any) {
       onPress={() => {
           data.length > 50
           ? navigation.navigate('SelectBoxDetail', { data, sort, letter })
-          : navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data })
+          : navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data, sortko: letter })
       }}
     >
       <View style={{ width: '70%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>

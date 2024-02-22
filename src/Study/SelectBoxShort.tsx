@@ -41,7 +41,7 @@ export default function SelectBoxShort (props : any) {
         <TouchableOpacity 
           style={styles.select}
           onPress={()=>{
-            props.navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data: propsDataAC })
+            props.navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data: propsDataAC, sortko: '공통(기초)' })
           }}
         >
           <View style={{width:'40%', flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
@@ -53,7 +53,7 @@ export default function SelectBoxShort (props : any) {
         <TouchableOpacity 
           style={styles.select}
           onPress={()=>{
-            props.navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data: propsDataDL })
+            props.navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data: propsDataDL, sortko: '공통(기초)' })
           }}
         >
           <View style={{width:'40%', flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
@@ -65,7 +65,7 @@ export default function SelectBoxShort (props : any) {
         <TouchableOpacity 
           style={styles.select}
           onPress={()=>{
-            props.navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data: propsDataMQ })
+            props.navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data: propsDataMQ, sortko: '공통(기초)' })
           }}
         >
           <View style={{width:'40%', flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
@@ -77,7 +77,7 @@ export default function SelectBoxShort (props : any) {
         <TouchableOpacity 
           style={styles.select}
           onPress={()=>{
-            props.navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data: propsDataRW })
+            props.navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data: propsDataRW, sortko: '공통(기초)' })
           }}
         >
           <View style={{width:'40%', flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
@@ -89,7 +89,7 @@ export default function SelectBoxShort (props : any) {
         <TouchableOpacity 
           style={styles.select}
           onPress={()=>{
-            props.navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data: propsDataETC })
+            props.navigation.navigate(sort === 'Study' ? 'Study' : 'Quiz', { data: propsDataETC, sortko: '공통(기초)' })
           }}
         >
           <View style={{width:'40%', flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
