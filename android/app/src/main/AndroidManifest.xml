@@ -9,6 +9,13 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <service
+          android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"
+          android:exported="false" >
+          <intent-filter>
+              <action android:name="com.google.firebase.MESSAGING_EVENT" />
+          </intent-filter>
+      </service>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
@@ -19,6 +26,20 @@
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW"/>
+          <category android:name="android.intent.category.DEFAULT"/>
+          <category android:name="android.intent.category.BROWSABLE"/>
+          <data android:scheme="com.studentsnursing.app"/>
+        </intent-filter>
+      </activity>
+      <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity" android:exported="true">
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW"/>
+          <category android:name="android.intent.category.DEFAULT"/>
+          <category android:name="android.intent.category.BROWSABLE"/>
+          <data android:host="oauth" android:scheme="kakaoae1a47d9e01e0f9dd5d35f7f6117c264"/>
         </intent-filter>
       </activity>
     </application>

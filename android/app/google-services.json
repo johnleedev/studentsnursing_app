@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "391526181993",
+    "project_id": "studentsnursing-f4cd2",
+    "storage_bucket": "studentsnursing-f4cd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391526181993:android:5cc7df9d96ae3b50a046f8",
+        "android_client_info": {
+          "package_name": "com.studentsnursing.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCX-kkRiiOhlkQIbSJhMEABE8zr4ejo2CE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
