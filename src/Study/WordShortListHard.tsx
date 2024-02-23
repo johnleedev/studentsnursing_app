@@ -86,21 +86,6 @@ export default function WordShortListHard (props : any) {
     setWordsViewList(words);
   }
 
-  const renderPreview = (content : string) => {
-    if (content?.length > 12) {
-      return content.substring(0, 12) + '...';
-    }
-    return content;
-  };
-
-
-  const [isDetailModalVisible, setDetailModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<any>(null);
-  const detailToggleModal = (item:any) => {
-    setSelectedItem(item);
-    setDetailModalVisible(!isDetailModalVisible);
-  };
-
   return (
     words.length === 0 && !isResdataFalse
     ?  (
@@ -170,36 +155,19 @@ export default function WordShortListHard (props : any) {
                   return ( 
                     <View key={index}
                       style={{flexDirection:'row', justifyContent:'space-between', padding:15, alignItems:'center',
-                                  borderWidth:1, borderRadius:10, borderColor:'#DFDFDF', height:70, marginVertical: 10
+                                  borderWidth:1, borderRadius:10, borderColor:'#DFDFDF', minHeight:70, marginVertical: 10
                       }}>
-                      <View style={{width:'30%', justifyContent:'flex-start', flexDirection:'row', alignItems:'center'}}>
+                      <View style={{width:'40%', justifyContent:'flex-start', flexDirection:'row', alignItems:'center'}}>
                         <Image
                           source={require("../images/study/greenmiddle.png")}
                           style={{width:10, height:20, resizeMode:'cover', opacity:0.5, marginRight:5}}>
                         </Image>
                         <Typography>{item.short_name}</Typography>
                       </View>
-                      {
-                        item.name_en.length > 12 || item.name_ko.length > 12
-                        ? 
-                        <TouchableOpacity 
-                          style={{width:'70%', flexDirection:'row', justifyContent:'space-between'}}
-                          onPress={()=>{detailToggleModal({ short_name: item.short_name, name_ko: item.name_ko, name_en : item.name_en })}}
-                        >
-                          <View style={{width: '90%', alignItems:'flex-end'}}>
-                            <Typography>{renderPreview(item.name_en)}</Typography>
-                            <Typography>{renderPreview(item.name_ko)}</Typography>
-                          </View>
-                          <View style={{width:'10%', alignItems:'flex-end'}}>
-                              <AntDesign name='right'/>
-                          </View>
-                        </TouchableOpacity>
-                        :
-                        <View style={{width: '70%', alignItems:'flex-end'}}>
-                          <Typography>{item.name_en}</Typography>
-                          <Typography>{item.name_ko}</Typography>
-                        </View>
-                      }
+                      <View style={{width: '60%', alignItems:'flex-end'}}>
+                        <Typography>{item.name_en}</Typography>
+                        <Typography>{item.name_ko}</Typography>
+                      </View>
                     </View>
                   )
                 })
@@ -223,7 +191,7 @@ export default function WordShortListHard (props : any) {
             }
             </>
           }
-          
+        <View style={{height:150}}></View>
         </ScrollView>
       </View>
 
@@ -256,28 +224,6 @@ export default function WordShortListHard (props : any) {
         <Typography color='#333' fontWeightIdx={1} fontSize={14}>문제풀기 </Typography>
         <AntDesign name='right' color='#333'/>
       </TouchableOpacity>
-
-      <Modal
-          animationType="slide"
-          transparent={true}
-          visible={isDetailModalVisible}
-          onRequestClose={detailToggleModal}
-        >
-          <View style={{ width: '100%', position: 'absolute', top:200, borderRadius: 20, backgroundColor: 'white', 
-                        padding: 20}}>
-            <Typography marginBottom={10} fontWeightIdx={1}>{selectedItem?.short_name}</Typography>
-            <TouchableOpacity style={{position:'absolute', top:5, right:10, padding:15}}
-              onPress={detailToggleModal}
-              > 
-                <AntDesign name='close' size={20} color='#000'/>
-            </TouchableOpacity>
-            <Divider height={3} marginVertical={10}/>
-              <Typography marginBottom={10}>{selectedItem?.name_en}</Typography>
-              <Typography marginBottom={10}>{selectedItem?.name_ko}</Typography>
-          </View>
-        </Modal>
-
-        <View style={ isDetailModalVisible ? styles.modalBackCover :  { display: 'none'}}></View>
 
     </View>
     )
@@ -337,13 +283,6 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems: 'center',
     justifyContent:'center'
-  },
-  modalBackCover : {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#333',
-    opacity: 0.8
-  },
+  }
 });
 

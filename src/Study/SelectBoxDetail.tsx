@@ -5,6 +5,7 @@ import { Divider } from '../Components/Divider';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import axios from 'axios';
 import MainURL from '../../MainURL';
+import Loading from '../Components/Loading';
 
 interface WordsProps {
   id: number;
@@ -18,13 +19,34 @@ export default function SelectBoxDetail (props : any) {
   
   const sort = props.route.params.sort;
   const letter = props.route.params.letter;
-  const propsData = props.route.params.data;
-  
-  const divideData = [];
-  for (let i = 0; i < propsData.length; i += 50) {
-    divideData.push(propsData.slice(i, i + 50));
-  }
+
+  const [wordsData, setWordsData] = useState< WordsProps[]>([]);
+  const [isResdataFalse, setIsResdataFalse] = useState<boolean>(false);
+
+  const fetchPosts = () => {
+    axios.get(`${MainURL}/study/getwordshorthardalphabet/${letter}`)
+    .then((res) => {
+      if(res.data) {
+        setIsResdataFalse(false);
+        let data: any = [...res.data];
+        setWordsData(data);
+      } else {
+        setIsResdataFalse(true);
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
    
+
+  const divideData = [];
+  for (let i = 0; i < wordsData.length; i += 50) {
+    divideData.push(wordsData.slice(i, i + 50));
+  }
+
+
 
   const RenderSection = ({ index, navigation, letter, data }: { index: number, navigation: any; letter: string; data: WordsProps[] }) => (
     <TouchableOpacity
@@ -52,13 +74,23 @@ export default function SelectBoxDetail (props : any) {
           }}>
           <AntDesign name="left" size={20} color="black" />
         </TouchableOpacity>
-        <Typography>선택</Typography>
+        <Typography>{sort === 'Study' ? '학습하기' : '문제풀기'} 선택 2</Typography>
       </View>
 
       <Divider />
- 
       
-      <ScrollView style={[styles.section]}>
+      <View style={{width:'100%', alignItems:'center', marginVertical:10}}>
+        <Typography fontSize={14} color='#8C8C8C'>* 편의상 50개 단어씩 구분하였습니다.</Typography>
+      </View>
+      
+
+      { isResdataFalse
+      ?  
+      <View style={{flex:1, width:'100%', height:'100%'}}>
+        <Loading /> 
+      </View>
+      :
+      <ScrollView style={{paddingHorizontal:20}}>
         <View style={{width:'100%', flexDirection:'row', flexWrap:'wrap', justifyContent:'space-between'}}>
           {
             divideData.map((item:any, index:any) => {
@@ -70,7 +102,7 @@ export default function SelectBoxDetail (props : any) {
         </View>
         <View style={{height:50}}></View>
       </ScrollView>
-      
+       }
     </View>
   );
 }

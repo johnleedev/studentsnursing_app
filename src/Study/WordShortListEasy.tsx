@@ -196,7 +196,7 @@ export default function WordShortListEasy (props : any) {
                       style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginVertical:10}}
                     >
                       <View style={{flexDirection:'row', justifyContent:'space-between', padding:15, alignItems:'center',
-                                    borderWidth:1, borderRadius:10, borderColor:'#DFDFDF', height:70
+                                    borderWidth:1, borderRadius:10, borderColor:'#DFDFDF', minHeight:70
                         }}>
                         <View style={{width:'30%', justifyContent:'flex-start', flexDirection:'row', alignItems:'center'}}>
                           <Image
@@ -218,7 +218,7 @@ export default function WordShortListEasy (props : any) {
             }
             </>
           }
-          
+        <View style={{height:150}}></View>
         </ScrollView>
       </View>
     

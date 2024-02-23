@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity,  Image, ScrollView } from 'react-native';
 import { Typography } from '../Components/Typography';
 import { Divider } from '../Components/Divider';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -13,6 +13,7 @@ interface WordsProps {
 }
 
 export default function Study (props : any) {
+
   const sortko : string = props.route.params.sortko ?? '';
   const wordsList: WordsProps[] = props.route.params.data;
   const wordsLength = wordsList.length;
@@ -53,34 +54,41 @@ export default function Study (props : any) {
               key={index} 
               style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginVertical:10}}
             >
-              <View style={{flexDirection:'row', justifyContent:'space-between', padding:15, alignItems:'center',
-                            borderWidth:1, borderRadius:10, borderColor:'#DFDFDF', height:70
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={()=>{handleIsViewMeaning(index, !isViewMeaning[index])}}
+                style={{flexDirection:'row', justifyContent:'space-between', padding:15, alignItems:'center',
+                            borderWidth:1, borderRadius:10, borderColor:'#DFDFDF', minHeight:70
                 }}>
-                <View style={{width:'30%', justifyContent:'flex-start', flexDirection:'row', alignItems:'center'}}>
-                  <Image
-                    source={require("../images/study/greenmiddle.png")}
-                    style={{width:10, height:20, resizeMode:'cover', opacity:0.5, marginRight:5}}>
-                  </Image>
-                  <Typography>{item.short_name}</Typography>
-                </View>
-                
-                <View style={{width:'70%', alignItems:'flex-end'}}>
-                  { isViewMeaning[index] ?
-                    <>
-                    <Typography>{item.name_en}</Typography>
-                    <Typography>{item.name_ko}</Typography>
-                    </>
-                    :
-                    <TouchableOpacity 
+                { !isViewMeaning[index] ?
+                <>
+                  <View style={{width:'50%', justifyContent:'flex-start', flexDirection:'row', alignItems:'center'}}>
+                    <Image
+                      source={require("../images/study/greenmiddle.png")}
+                      style={{width:10, height:20, resizeMode:'cover', opacity:0.5, marginRight:5}}>
+                    </Image>
+                    <Typography>{item.short_name}</Typography>
+                  </View>
+                  <View style={{width:'50%', alignItems:'flex-end'}}>
+                    <View
                       style={{height:40, justifyContent:'center', paddingHorizontal:30, borderWidth:1, borderColor:'#EAEAEA', borderRadius:5}}
-                      onPress={()=>{handleIsViewMeaning(index, !isViewMeaning[index])}}
                     >
                       <Typography color='#8C8C8C'>의미보기</Typography>
-                    </TouchableOpacity>
-                  }
-                </View>
-                
-              </View>
+                    </View>
+                  </View>
+                </>
+                :
+                <>
+                  <View style={{width:'10%', justifyContent:'center'}}>
+                    <AntDesign name='left' color='#333'/>           
+                  </View>
+                  <View style={{width:'90%', alignItems:'flex-end'}}>
+                    <Typography>{item.name_en}</Typography>
+                    <Typography>{item.name_ko}</Typography>
+                  </View>
+                </>
+                }
+              </TouchableOpacity>
             </View>
           )
         })
