@@ -5,7 +5,7 @@ import { SubTitle } from '../../Components/SubTitle';
 
 function Policy (props : any) {
 
-  const Url = `https://students.com/usingpolicy.html`;
+  const Url = `https://studentsnursing.com/usingpolicy.html`;
 
   return (
     <View style={{ flex: 1, backgroundColor:'#fff'}}>

@@ -5,7 +5,7 @@ import { SubTitle } from '../../Components/SubTitle';
 
 function PersonInfo (props : any) {
 
-  const Url = `https://studentsclassic.com/personalinfo.html`;
+  const Url = `https://studentsnursing.com/personalinfo.html`;
 
   return (
     <View style={{ flex: 1, backgroundColor:'#fff'}}>
